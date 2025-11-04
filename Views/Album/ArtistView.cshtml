@@ -1,0 +1,16 @@
+﻿@model MusicStore.ViewModels.ArtistViewModel
+@{
+    ViewData["Title"] = "Artists and Albums";
+}
+<h2>@ViewData["Title"]</h2>
+
+@foreach (var artist in Model.Artists)
+{
+    <h3>@artist.Name</h3>
+    <ul>
+        @foreach (var album in Model.Albums.Where(a => a.ArtistId == artist.ArtistId))
+        {
+            <li>@album.Title (@string.Format("{0:C}", album.Price))</li>
+        }
+    </ul>
+}
